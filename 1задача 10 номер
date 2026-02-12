@@ -1,0 +1,16 @@
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "russian");
+
+    //ручной ввод переменных
+    int a;
+    int b;
+
+    cout << "Введите переменные a,b через пробел: ";
+    cin >> a >> b;
+    cout << max(a, b);
+}
