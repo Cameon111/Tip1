@@ -1,0 +1,45 @@
+#include <iostream>
+#include <vector>
+#include <map>
+#include <algorithm>
+using namespace std;
+
+map<int, vector<int>> children;
+vector<int> roots;
+
+void dfs(int id, int depth) {
+    // Отступ
+    for (int i = 0; i < depth; i++) cout << '*';
+    cout << id << endl;
+
+    // Дети текущего узла
+    vector<int>& childs = children[id];
+    sort(childs.begin(), childs.end());
+
+    for (int child : childs) {
+        dfs(child, depth + 2);
+    }
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    for (int i = 0; i < n; i++) {
+        int id, parent;
+        cin >> id >> parent;
+        if (parent == 0) {
+            roots.push_back(id);
+        } else {
+            children[parent].push_back(id);
+        }
+    }
+
+    sort(roots.begin(), roots.end());
+
+    for (int root : roots) {
+        dfs(root, 0);
+    }
+
+    return 0;
+}
